@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Simple.OData.Client;
 using TestAPI.Models;
+using Microsoft.OData.Client;
+using System.ComponentModel;
 
 namespace TestAPI.Controllers
 {
@@ -16,9 +18,10 @@ namespace TestAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var client = new ODataClient("http://services.odata.org/V4/TripPinService/");
+            var container = new Microsoft.OData.Client.DataServiceQuery<Person>();//new Container(new Uri("http://services.odata.org/V4/TripPinService/");
+            //var client = new ODataClient("http://services.odata.org/V4/TripPinService/");
 
-           var people = await client.For<Person>().Filter(p => p.FirstName == "Russell").FindEntriesAsync();
+           //var people = await client.For<Person>().Filter(p => p.FirstName == "Russell").FindEntriesAsync();
             
             // var people = await client.For("People")
             //     .Filter("FirstName eq 'Russell'")
